@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/gbsfo_password_manager/static/css/main.e6c13ad2.css",
+    "main.js": "/gbsfo_password_manager/static/js/main.739fb5b4.js",
+    "index.html": "/gbsfo_password_manager/index.html",
+    "main.e6c13ad2.css.map": "/gbsfo_password_manager/static/css/main.e6c13ad2.css.map",
+    "main.739fb5b4.js.map": "/gbsfo_password_manager/static/js/main.739fb5b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.739fb5b4.js"
+  ]
+}
