@@ -1,0 +1,24 @@
+.error {
+  display: flex;
+  justify-content: center;
+  
+  &__close-logo {
+    width: 15px;
+    height: 15px;
+  }
+
+  &__close-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 10px;
+    background: rgba(255, 0, 0, 0.4);
+    border-radius: 10px;
+  }
+}
