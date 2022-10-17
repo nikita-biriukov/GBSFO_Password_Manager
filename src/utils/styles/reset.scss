@@ -8,7 +8,8 @@ a {
 
 ul,
 input,
-p {
+p,
+h1 {
   margin: 0;
   padding: 0;
 }
@@ -19,4 +20,24 @@ ul {
 
 input[type=checkbox] {
   color: skyblue;
+}
+
+button {
+  border: none;
+  outline: none;
+  font-family: cursive;
+  color: #189696;
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover {
+    color: #189696;
+    background-color: #faf0be;
+  }
+
+  &__label {
+    position: relative;
+  }
 }

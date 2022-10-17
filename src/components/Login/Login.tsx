@@ -1,21 +1,48 @@
-import React, { useMemo, useState } from 'react'
-import { Error } from '../Error/Error'
-import './Login.scss'
+import React, { Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { getUser } from '../../api/users';
+import { User } from '../../types/User';
+import { Error } from '../Error/Error';
+import './Login.scss';
 
-export const Login: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+interface Props {
+  setUser: Dispatch<SetStateAction<User | null>>
+}
+
+export const Login: React.FC<Props> = ({ setUser }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const canSubmit = useMemo((): boolean => {
-    return (!login.trim() || !password.trim())
-  }, [login, password])
+    return (!login.trim() || !password.trim());
+  }, [login, password]);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const user = await getUser(login, password);
+
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        setLoading(false);
+      } else {
+        setError('The username or password is incorrect');
+        setLoading(false);
+      }
+    } catch (error) {
+      setError('Something went wrong');
+      setLoading(false);
+    }
+  };
 
   return (
     <>
       <div className='login page__section'>
-        <form className='login__form' onSubmit={e => e.preventDefault()}>
+        <form className='login__form' onSubmit={handleSubmit}>
           <input
             id='login'
             type='text'
@@ -48,16 +75,16 @@ export const Login: React.FC = () => {
             className='login__button'
             disabled={canSubmit}
           >
-            Sign in
+            {loading ? 'Loading...' : 'Sign in'}
           </button>
         </form>
       </div>
 
       {error && (
         <div className='login__error error'>
-          <Error errorText={error} setError={setError}/>
+          <Error errorText={error} setError={setError} />
         </div>
       )}
     </>
-  )
-}
+  );
+};

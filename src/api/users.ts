@@ -1,22 +1,22 @@
-import { User } from '../types/User'
-import { client } from '../utils/fetchClient'
+import { User } from '../types/User';
+import { client } from '../utils/app/fetchClient';
 
 export const getUser = async (login: string, password: string): Promise<User> => {
-  const users = await client.get<User[]>(`/users?login=${login}&password=${password}`)
+  const users = await client.get<User[]>(`/users?login=${login}&password=${password}`);
 
-  return users[0] || null
-}
+  return users[0] || null;
+};
 
 export const addUser = async (login: string, password: string): Promise<User> => {
-  return await client.post<User>('/users', { login, password })
-}
+  return await client.post<User>('/users', { login, password });
+};
 
 export const isLoginFree = async (login: string): Promise<boolean> => {
-  const users = await client.get<User[]>(`/users?login=${login}`)
+  const users = await client.get<User[]>(`/users?login=${login}`);
 
   if (users.length > 0) {
-    return false
+    return false;
   }
 
-  return true
-}
+  return true;
+};

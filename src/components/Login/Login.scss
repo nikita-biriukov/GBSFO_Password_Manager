@@ -3,10 +3,8 @@
   flex-direction: column;
   align-items: center;
   width: 320px;
-  // margin: 0 auto;
   border-radius: 20px;
   background-color: skyblue;
-
 
   &__form {
     display: flex;
@@ -26,13 +24,11 @@
       font-family: cursive;
       opacity: .5;
     }
-  
   }
-  
+
   &__check {
     margin-right: 10px;
     margin-bottom: 15px;
-    color: whitesmoke;
     cursor: pointer;
   }
 
@@ -67,7 +63,7 @@
     cursor: pointer;
     align-items: center;
     margin-bottom: 10px;
-    color: #ffffd0;
+    color: white;
   }
 
   &__error {

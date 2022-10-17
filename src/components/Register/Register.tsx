@@ -1,46 +1,46 @@
-import './Register.scss'
-import React, { useMemo, useState } from 'react'
-import { Error } from '../Error/Error'
-import { addUser, isLoginFree } from '../../api/users'
-import { useNavigate } from 'react-router'
+import './Register.scss';
+import React, { useMemo, useState } from 'react';
+import { Error } from '../Error/Error';
+import { addUser, isLoginFree } from '../../api/users';
+import { useNavigate } from 'react-router';
 
 export const Register: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const canSubmit = useMemo((): boolean => {
-    return !login.trim() || !password.trim()
-  }, [login, password])
+    return !login.trim() || !password.trim();
+  }, [login, password]);
 
   const createAccount = async (): Promise<void> => {
     return await addUser(login, password)
-      .then(() => navigate('/dasboard'))
-      .catch(() => setError('Something went wrong'))
-  }
+      .then(() => navigate('/login'))
+      .catch(() => setError('Something went wrong'));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      const canRegister = await isLoginFree(login)
+      const canRegister = await isLoginFree(login);
 
       if (canRegister) {
-        await createAccount()
+        await createAccount();
       } else {
-        setError('Login has already been taken')
+        setError('Login has already been taken');
       }
     } catch (error) {
-      setError('Something went wrong')
+      setError('Something went wrong');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <>
@@ -89,5 +89,5 @@ export const Register: React.FC = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
