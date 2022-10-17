@@ -1,0 +1,15 @@
+.nopage {
+  text-align: center;
+
+  &__info {
+    margin: 50px auto;
+    width: 320px;
+    background-color: skyblue;
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  &__text {
+    color: white
+  }
+}
